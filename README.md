@@ -93,7 +93,7 @@ The user password will be stored in the MySQL table encrypted:
 | :---: |:---:| :---:|:---:|:---:|
 | 1| finn | mertens |finn_mertens@gmail.com| 548d41ea7786588051afc6531c8fa85c|
 
-The email will be sended using this [message.txt](/examples/users.csv) template (feel free to edit, preserving the template substitutions):
+The email will be sended using this [message.txt](/examples/message.txt) template (feel free to edit, preserving the template substitutions):
 
 ![](/imgs/email_example.png)
 
