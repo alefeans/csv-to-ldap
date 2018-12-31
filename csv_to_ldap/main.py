@@ -7,6 +7,12 @@ from my_sql import MySQLConnector
 
 
 def create_user(open_ldap, smtp, mysql, entries):
+    """
+    If the 'ldap_insert' returns True, then 
+    the data will be inserted in MySQL and the
+    email will be send with the account info.
+    Else, returns 'None'.
+    """
     try:
         if open_ldap.ldap_insert(entries):
             mysql.insert_items(entries)
@@ -20,6 +26,13 @@ def create_user(open_ldap, smtp, mysql, entries):
 
 
 def run(args):
+    """
+    Creates the OpenLDAP, MySQL and SMTP
+    objects and iterates over the .csv file.
+    Calls the create_user function and check the
+    result (if 'true' the count will be increased).
+    Returns the total count of users created.
+    """
     open_ldap = OpenLdap(args.user,
                          args.password,
                          args.address)
