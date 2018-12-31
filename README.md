@@ -60,8 +60,7 @@ required arguments:
 Example with the [users.csv](/examples/users.csv) file using only the **required** parameters:
 
 ```
-python csv_to_ldap/main.py -u 'cn=admin,dc=example,
-dc=org' -w admin -s 'smtp-mail.outlook.com' -p 587 -e 'user_test_py@hotmail.com' -r '<password>' -o 'teste123' -f examples/users.csv
+python csv_to_ldap/main.py -u 'cn=admin,dc=example,dc=org' -w admin -s 'smtp-mail.outlook.com' -p 587 -e 'user_test_py@hotmail.com' -r '<password>' -o 'teste123' -f examples/users.csv
 
 INFO - SMTP - Authentication Successful
 INFO - MYSQL - Database 'company' and table 'users' OK
