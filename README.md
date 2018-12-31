@@ -65,14 +65,14 @@ python csv_to_ldap/main.py -u 'cn=admin,dc=example,dc=org' -w admin -s 'smtp-mai
 INFO - SMTP - Authentication Successful
 INFO - MYSQL - Database 'company' and table 'users' OK
 INFO - LDAP - Creating user 'finn' on OpenLDAP
-INFO - MYSQL - Inserting '('finn', 'mertens', 'finn_mertens@gmail.com')' on table 'users'
-INFO - SMTP - Sending account info to finn_mertens@gmail.com
+INFO - MYSQL - Inserting '('finn', 'mertens', 'finn_mertens@ooo.com')' on table 'users'
+INFO - SMTP - Sending account info to finn_mertens@ooo.com
 INFO - LDAP - Creating user 'jake' on OpenLDAP
-INFO - MYSQL - Inserting '('jake', 'dog', 'jake_the_dog@gmail.com')' on table 'users'
-INFO - SMTP - Sending account info to jake_the_dog@gmail.com
+INFO - MYSQL - Inserting '('jake', 'dog', 'jake_the_dog@ooo.com')' on table 'users'
+INFO - SMTP - Sending account info to jake_the_dog@ooo.com
 INFO - LDAP - Creating user 'simon' on OpenLDAP
-INFO - MYSQL - Inserting '('simon', 'petrikov', 'ice_king@hotmail.com')' on table 'users'
-INFO - SMTP - Sending account info to ice_king@hotmail.com
+INFO - MYSQL - Inserting '('simon', 'petrikov', 'ice_king@ooo.com')' on table 'users'
+INFO - SMTP - Sending account info to ice_king@ooo.com
 INFO - Finished. Total of 3 user(s) created
 ```
 
