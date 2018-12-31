@@ -11,7 +11,7 @@ class MySQLConnector:
         self.host = host
         self.connection = self._get_connection()
         self.cursor = self.connection.cursor()
-        self._db_email()
+        self._db_company()
 
     def _get_connection(self):
         """
@@ -63,7 +63,7 @@ class MySQLConnector:
         connection.close()
         return
 
-    def _db_email(self):
+    def _db_company(self):
         """
         Checks if both database and tables were
         created successfully and close the
