@@ -17,7 +17,7 @@ pip install -r requirements.txt
 
 From it's `--help` option:
 ```
-python csv_to_ldap/main -h
+python csv_to_ldap/main.py -h
 usage: main.py [-h] [-a ADDRESS]
                     -u USER -w PASSWORD 
                     -s SMTP_HOST
