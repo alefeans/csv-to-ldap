@@ -26,6 +26,9 @@ class SmtpServer:
             sys.exit()
 
     def read_template(self, filename='examples/message.txt'):
+        """
+        Returns a Template object to be 'parsed'.
+        """
         try:
             with open(filename, 'r', encoding='utf-8') as template_file:
                 template_file_content = template_file.read()
@@ -35,6 +38,11 @@ class SmtpServer:
             sys.exit()
 
     def email_constructor(self, entries):
+        """
+        Makes the substitutions in the template
+        object, changing the ${NAME}, ${LASTNAME} and
+        ${PASSWORD} to the entries values received.
+        """
         try:
             msg = MIMEMultipart()
             message_template = self.read_template()
