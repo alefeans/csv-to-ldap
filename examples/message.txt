@@ -1,0 +1,8 @@
+Dear ${NAME} ${LASTNAME}, 
+
+This is your account information:
+
+user: ${NAME}
+password: ${PASSWORD}
+
+Thanks !

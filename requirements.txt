@@ -1,0 +1,5 @@
+ldap3==2.5.2
+mysql-connector-python==8.0.13
+protobuf==3.6.1
+pyasn1==0.4.5
+six==1.12.0
