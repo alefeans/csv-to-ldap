@@ -38,12 +38,15 @@ class OpenLdap:
             user = self.user.split(',')
             user[0] = 'cn=' + entries['name']
             dn = ','.join(user)
-            if self.conn.add(dn, objectClass, item):
+            conn = self._ldap_connector()
+            if conn.add(dn, objectClass, item):
                 print("INFO - LDAP - Creating user '{}' on OpenLDAP".format(entries['name']))
                 return True
             else:
-                print('WARN - LDAP - ', self.conn.result['description'])
+                print('WARN - LDAP - ', conn.result['description'])
                 return False
         except Exception as e:
             print('ERROR - LDAP - ', e)
             sys.exit()
+        finally:
+            conn.unbind()
