@@ -87,6 +87,22 @@ WARN - LDAP -  entryAlreadyExists
 INFO - Finished. Total of 0 user(s) created
 ```
 
+The user entry in OpenLDAP:
+```
+DN: cn=finn,dc=example,dc=org - STATUS: Read - READ TIME: 2018-12-31T18:37:18.156810
+    cn: finn mertens
+        finn
+    givenName: finn
+    mail: finn_mertens@gmail.com
+    objectClass: top
+                 person
+                 organizationalPerson
+                 inetOrgPerson
+    sn: mertens
+    uid: finn
+    userPassword: b'CzlkndNzGryd'
+```
+
 The user password will be stored in the MySQL table encrypted:
 
  id_users | name | lastname  | email | password |
