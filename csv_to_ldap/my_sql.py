@@ -22,6 +22,7 @@ class MySQLConnector:
             connection = mysql.connector.connect(user=self.user,
                                                  password=self.password,
                                                  host=self.host)
+            return connection
         except mysql.connector.Error as e:
             if e.errno == errorcode.ER_ACCESS_DENIED_ERROR:
                 print("ERROR - MYSQL - Wrong username or password")
@@ -29,8 +30,6 @@ class MySQLConnector:
             else:
                 print('ERROR - MYSQL - ', e)
                 sys.exit()
-        else:
-            return connection
 
     def _create_database(self):
         try:
