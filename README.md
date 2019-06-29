@@ -19,9 +19,9 @@ From it's `--help` option:
 ```
 python csv_to_ldap/main.py -h
 usage: main.py [-h] [-a ADDRESS]
-                    -u USER -w PASSWORD 
+                    -u USER -w PASSWORD
                     -s SMTP_HOST
-                    -p PORT 
+                    -p PORT
                     -e  EMAIL
                     -r EMAIL_PASSWORD
                     [-m MYSQL_ADDRESS]
@@ -118,6 +118,7 @@ The email will be sended using this [message.txt](/examples/message.txt) templat
 
 * Include *'must change password at first login'* policy.
 * Include unit tests.
+* Adjustment of "dumb" exceptions.
 
 ## License
 
