@@ -3,23 +3,19 @@ from arguments_parser import parse_args
 from open_ldap import OpenLdap
 from csv_parser import parse_csv, random_password
 from smtp_mail import SmtpServer
-from my_sql import MySQLConnector
 
 
-def create_user(open_ldap, smtp, mysql, entries):
+def create_user(open_ldap, smtp, entries):
     """
-    If the 'ldap_insert' returns True, then 
-    the data will be inserted in MySQL and the
-    email will be send with the account info.
-    Else, returns 'None'.
+    If the 'ldap_insert' returns True, then
+    the email will be send with the account info.
     """
     try:
         if open_ldap.ldap_insert(entries):
-            mysql.insert_items(entries)
             smtp.send_email(entries)
             return True
         else:
-            return
+            return False
     except Exception as e:
         print('ERROR - ', e)
         return
@@ -27,7 +23,7 @@ def create_user(open_ldap, smtp, mysql, entries):
 
 def run(args):
     """
-    Creates the OpenLDAP, MySQL and SMTP
+    Creates the OpenLDAP and SMTP
     objects and iterates over the .csv file.
     Calls the create_user function and check the
     result (if 'true' the count will be increased).
@@ -40,17 +36,17 @@ def run(args):
                       args.port,
                       args.email,
                       args.email_password)
-    mysql = MySQLConnector(args.mysql_user,
-                           args.mysql_password,
-                           args.mysql_address)
     entries = {}
     count = 0
     for row in parse_csv(args.file):
-        entries['name'] = row['name']
-        entries['lastname'] = row['lastname']
-        entries['email'] = row['email']
+        try:
+            entries['name'] = row['name']
+            entries['lastname'] = row['lastname']
+            entries['email'] = row['email']
+        except KeyError as e:
+            return "ERROR - Missing '{}' csv header".format(e)
         entries['password'] = random_password()
-        if create_user(open_ldap, smtp, mysql, entries):
+        if create_user(open_ldap, smtp, entries):
             count += 1
     return "INFO - Finished. Total of {} user(s) created".format(count)
 

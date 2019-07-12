@@ -1,4 +1,5 @@
 import sys
+import ldap3
 from ldap3 import Server, Connection
 
 
@@ -8,14 +9,13 @@ class OpenLdap:
         self.user = user
         self.password = password
         self.address = address
-        self.conn = self._ldap_connector()
+        self.server = Server(self.address)
 
     def _ldap_connector(self):
-        server = Server(self.address)
         try:
-            conn = Connection(server, self.user, self.password, auto_bind=True)
+            conn = Connection(self.server, self.user, self.password, auto_bind=True)
             return conn
-        except Exception as e:
+        except ldap3.core.exceptions.LDAPSocketOpenError as e:
             print('ERROR - LDAP - Bind Failed: ', e)
             sys.exit()
 
@@ -26,19 +26,23 @@ class OpenLdap:
             'organizationalPerson',
             'inetOrgPerson',
         ]
-        item = {
-            'uid': entries['name'],
-            'cn': entries['name'] + ' ' + entries['lastname'],
-            'givenname': entries['name'],
-            'sn': entries['lastname'],
-            'mail': entries['email'],
-            'userPassword': entries['password'],
-        }
+        try:
+            item = {
+                'uid': entries['name'],
+                'cn': entries['name'] + ' ' + entries['lastname'],
+                'givenname': entries['name'],
+                'sn': entries['lastname'],
+                'mail': entries['email'],
+                'userPassword': entries['password'],
+            }
+        except KeyError:
+            print('ERROR - Wrong entries in OpenLDAP items')
+            return False
+        conn = self._ldap_connector()
         try:
             user = self.user.split(',')
             user[0] = 'cn=' + entries['name']
             dn = ','.join(user)
-            conn = self._ldap_connector()
             if conn.add(dn, objectClass, item):
                 print("INFO - LDAP - Creating user '{}' on OpenLDAP".format(entries['name']))
                 return True
