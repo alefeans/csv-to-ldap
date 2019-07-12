@@ -27,15 +27,6 @@ def parse_args():
     required.add_argument("-r", "--email_password",
                           help="email password",
                           required=True)
-    optional.add_argument("-m", "--mysql_address",
-                          help="MySQL address, default is localhost",
-                          default='localhost')
-    optional.add_argument("-n", "--mysql_user",
-                          help="MySQL user, default is root",
-                          default='root')
-    required.add_argument("-o", "--mysql_password",
-                          help="MySQL password",
-                          required=True)
     required.add_argument("-f", "--file",
                           help="CSV file to parse",
                           required=True)
