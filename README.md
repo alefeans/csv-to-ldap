@@ -9,7 +9,7 @@ A *simple* CSV to OpenLDAP system. It reads a .csv file, creates the users in Op
 
 To install **CSV to OpenLDAP** you will need to:
 ```
-git clone https://github.com/alefeans/csv_to_ldap.git .
+git clone https://github.com/alefeans/csv-to-ldap.git && cd csv-to-ldap/
 pip install -r requirements.txt
 ```
 
