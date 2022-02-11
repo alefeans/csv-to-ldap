@@ -1,4 +1,4 @@
 ldap3==2.5.2
-protobuf==3.6.1
+protobuf==3.15.0
 pyasn1==0.4.5
 six==1.12.0
